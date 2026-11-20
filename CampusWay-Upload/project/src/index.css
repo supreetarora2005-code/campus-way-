@@ -11,6 +11,49 @@
   }
 }
 
+.leaflet-container {
+  position: relative;
+  z-index: 0;
+  font-family: inherit;
+}
+
+.campus-map-marker {
+  border: 0;
+  background: transparent;
+}
+
+.campus-map-marker__dot,
+.campus-map-user__dot {
+  display: block;
+  width: 18px;
+  height: 18px;
+  border: 3px solid white;
+  border-radius: 9999px;
+  background: #0d9488;
+  box-shadow: 0 2px 8px rgb(15 23 42 / 28%);
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.campus-map-marker__dot--selected {
+  transform: scale(1.25);
+  background: #0f172a;
+  box-shadow: 0 0 0 6px rgb(13 148 136 / 22%), 0 2px 8px rgb(15 23 42 / 30%);
+}
+
+.campus-map-user__dot {
+  border-color: white;
+  background: #2563eb;
+  box-shadow: 0 0 0 6px rgb(37 99 235 / 20%), 0 2px 8px rgb(15 23 42 / 28%);
+}
+
+.leaflet-popup-content-wrapper {
+  border-radius: 14px;
+}
+
+.leaflet-control-attribution {
+  font-size: 10px;
+}
+
 @layer components {
   .page-shell {
     @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;

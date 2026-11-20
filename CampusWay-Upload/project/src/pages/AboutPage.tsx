@@ -11,17 +11,18 @@ import {
   Phone,
   MapPin,
 } from 'lucide-react';
+import { RNSIT } from '@/i18n/translations';
 
 const BENEFITS = [
   {
     icon: Clock,
     title: 'Save Time Every Day',
-    text: 'Stop asking for directions — reach any classroom, lab or office in minutes, even on your first visit.',
+    text: 'Find verified campus records from any device. More detailed building information can be added as it is checked.'
   },
   {
     icon: Users,
     title: 'Welcome for Visitors',
-    text: 'Guests, parents and new joiners can navigate the campus confidently without a personal guide.',
+    text: 'Visitors can review a location description, its coordinate precision and its published source before choosing it.'
   },
   {
     icon: Accessibility,
@@ -31,7 +32,7 @@ const BENEFITS = [
   {
     icon: MapPinned,
     title: 'One Source of Truth',
-    text: 'Room lists, departments and facility details stay consistent for the whole campus in one place.',
+    text: 'Verified locations and their descriptions come from one shared campus directory.'
   },
 ];
 
@@ -53,6 +54,11 @@ export default function AboutPage() {
       return;
     }
     setError('');
+    const subject = encodeURIComponent('CampusWay location feedback');
+    const body = encodeURIComponent(
+      `Name: ${name.trim()}\nReply email: ${email.trim()}\n\n${message.trim()}`
+    );
+    window.location.href = `mailto:${RNSIT.contact.email}?subject=${subject}&body=${body}`;
     setSent(true);
   };
 
@@ -73,12 +79,10 @@ export default function AboutPage() {
             <Target size={13} /> About the Project
           </span>
           <h1 className="mt-6 max-w-3xl font-display text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl">
-            Making Every Corner of Campus Easy to Find
+            Find Verified Locations Across Campus
           </h1>
           <p className="mt-5 max-w-2xl leading-relaxed text-navy-100 sm:text-lg">
-            CampusWay is a smart campus navigation platform built as a student project. It
-            maps every building, classroom, laboratory and facility at the university so
-            students, faculty and visitors can find their way in seconds.
+            CampusWay is a campus directory and interactive map for RNSIT. Only locations with verified coordinates and a published source appear, and precise walking directions are enabled as routeable destinations are verified.
           </p>
         </div>
       </section>
@@ -94,9 +98,7 @@ export default function AboutPage() {
               a single, easy-to-use map and directory that works on any device.
             </p>
             <p className="mt-4 leading-relaxed text-navy-600">
-              The project demonstrates a complete navigation experience using sample campus
-              data, with a clean structure that can later be connected to a live map service,
-              indoor routing and real-time updates.
+              CampusWay reads verified location records from the connected campus database. Approximate campus references are labeled clearly, and walking directions remain unavailable until precise building or entrance coordinates are verified.
             </p>
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
@@ -129,15 +131,15 @@ export default function AboutPage() {
             {[
               {
                 title: 'Interactive Campus Map',
-                text: 'A campus overview with pins for every location — tap a pin to see what it is and where it leads.',
+                text: 'OpenStreetMap tiles show verified campus coordinates; select a pin to see its description and source.'
               },
               {
                 title: 'Searchable Directory',
-                text: 'Twelve mapped locations with photos, departments, floor-wise room lists and facility details.',
+                text: 'Search verified location records and filter them by active campus categories.'
               },
               {
                 title: 'Route Planning',
-                text: 'Pick a starting point and destination to highlight a walking route across campus.',
+                text: 'Walking directions are requested from your location only for precise, verified, routeable destinations.'
               },
             ].map((f) => (
               <div
@@ -162,27 +164,26 @@ export default function AboutPage() {
                 Contact & Feedback
               </h2>
               <p className="mt-3 text-sm leading-relaxed text-navy-200">
-                Spotted a wrong room number, a missing facility, or have an idea to improve
-                CampusWay? Send us a note — every suggestion helps make the map better.
+                Have a correction for a verified location or an idea to improve CampusWay? Use the form to prepare an email to RNSIT; it is submitted only when you send it from your email app.
               </p>
               <ul className="mt-8 space-y-4 text-sm text-navy-100">
                 <li className="flex items-center gap-3">
                   <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/10">
                     <Mail size={15} className="text-teal-400" />
                   </span>
-                  hello@campusway.edu
+                  <a href={`mailto:${RNSIT.contact.email}`} className="transition hover:text-white">{RNSIT.contact.email}</a>
                 </li>
                 <li className="flex items-center gap-3">
                   <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/10">
                     <Phone size={15} className="text-teal-400" />
                   </span>
-                  +91 1800 200 400
+                  <a href={`tel:${RNSIT.contact.phone.replace(/[^+\d]/g, '')}`} className="transition hover:text-white">{RNSIT.contact.phone}</a>
                 </li>
                 <li className="flex items-center gap-3">
                   <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/10">
                     <MapPin size={15} className="text-teal-400" />
                   </span>
-                  Student Activity Center, Ground Floor
+                  {RNSIT.contact.address}
                 </li>
               </ul>
             </div>
@@ -194,8 +195,8 @@ export default function AboutPage() {
                     <CheckCircle2 size={28} className="text-teal-600" />
                   </span>
                   <h3 className="mt-5 text-lg font-bold text-navy-900">Thank you, {name.trim()}!</h3>
-                  <p className="mt-2 max-w-xs text-sm text-navy-600">
-                    Your feedback has been recorded. The CampusWay team reviews every message.
+                  <p className="mt-2 max-w-xs text-sm text-navy-600" role="status">
+                    Your email app should open with a ready-to-send draft. Send it there to submit your feedback.
                   </p>
                   <button
                     onClick={() => {
@@ -252,7 +253,7 @@ export default function AboutPage() {
                     />
                   </div>
                   {error && (
-                    <p className="rounded-xl bg-red-50 px-4 py-2.5 text-sm font-medium text-red-700">
+                    <p className="rounded-xl bg-red-50 px-4 py-2.5 text-sm font-medium text-red-700" role="alert">
                       {error}
                     </p>
                   )}

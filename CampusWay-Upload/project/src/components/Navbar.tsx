@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
-import { Link, NavLink, useNavigate } from 'react-router-dom';
-import { Menu, X, MapPin, Globe, LogIn, UserPlus, UserRound, LogOut, ShieldCheck } from 'lucide-react';
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { Menu, X, Globe, LogIn, UserPlus, UserRound, LogOut } from 'lucide-react';
 import { useLanguage } from '@/i18n/LanguageContext';
 import { LANGUAGES, RNSIT } from '@/i18n/translations';
 import { useAuth } from '@/auth/AuthContext';
@@ -16,18 +16,36 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+  const location = useLocation();
   const navigate = useNavigate();
   const { lang, setLang, t } = useLanguage();
-  const { user, profile, isAdmin, signOut } = useAuth();
+  const { user, profile, signOut } = useAuth();
 
   useEffect(() => {
-    if (!menuOpen) return;
-    const onClick = (e: MouseEvent) => {
-      if (menuRef.current && !menuRef.current.contains(e.target as Node)) setMenuOpen(false);
+    setOpen(false);
+    setMenuOpen(false);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    if (!menuOpen && !open) return;
+    const onClick = (event: MouseEvent) => {
+      if (menuOpen && menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setMenuOpen(false);
+      }
+    };
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setMenuOpen(false);
+        setOpen(false);
+      }
     };
     document.addEventListener('mousedown', onClick);
-    return () => document.removeEventListener('mousedown', onClick);
-  }, [menuOpen]);
+    document.addEventListener('keydown', onKeyDown);
+    return () => {
+      document.removeEventListener('mousedown', onClick);
+      document.removeEventListener('keydown', onKeyDown);
+    };
+  }, [menuOpen, open]);
 
   const linkClass = ({ isActive }: { isActive: boolean }) =>
     `rounded-full px-4 py-2 text-sm font-medium transition-colors ${
@@ -72,11 +90,6 @@ export default function Navbar() {
           <Link to="/profile" onClick={() => setOpen(false)} className="block rounded-lg px-4 py-3 text-sm font-medium text-navy-700 hover:bg-navy-50">
             {profile?.full_name || 'Your profile'}
           </Link>
-          {isAdmin && (
-            <Link to="/admin" onClick={() => setOpen(false)} className="block rounded-lg px-4 py-3 text-sm font-medium text-teal-700 hover:bg-teal-50">
-              Admin dashboard
-            </Link>
-          )}
           <button
             onClick={async () => {
               setOpen(false);
@@ -112,15 +125,6 @@ export default function Navbar() {
                 >
                   <UserRound size={15} /> Your profile
                 </Link>
-                {isAdmin && (
-                  <Link
-                    to="/admin"
-                    onClick={() => setMenuOpen(false)}
-                    className="flex items-center gap-2.5 rounded-xl px-3 py-2.5 text-sm font-medium text-teal-700 transition hover:bg-teal-50"
-                  >
-                    <ShieldCheck size={15} /> Admin dashboard
-                  </Link>
-                )}
                 <button
                   onClick={async () => {
                     setMenuOpen(false);
@@ -142,14 +146,14 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 border-b border-navy-100 bg-white/90 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link to="/" className="flex items-center gap-2.5" onClick={() => setOpen(false)}>
+        <Link to="/" className="flex min-w-0 items-center gap-2.5" onClick={() => setOpen(false)}>
           <img
             src="/images/rnsit-logo.png"
             alt="RNSIT Logo"
-            className="h-11 w-auto object-contain"
+            className="h-8 w-auto shrink-0 object-contain sm:h-11"
           />
-          <span className="leading-tight">
-            <span className="block text-lg font-bold tracking-tight text-navy-900">
+          <span className="hidden min-w-0 leading-tight sm:block">
+            <span               className="block truncate text-base font-bold tracking-tight text-navy-900 sm:text-lg">
               RNSIT <span className="text-teal-600">CampusWay</span>
             </span>
             <span className="block text-[10px] font-medium uppercase tracking-wide text-navy-400">
@@ -195,17 +199,18 @@ export default function Navbar() {
         </div>
 
         <button
-          className="flex h-10 w-10 items-center justify-center rounded-lg text-navy-800 transition hover:bg-navy-50 md:hidden"
+          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-navy-800 transition hover:bg-navy-50 md:hidden"
           onClick={() => setOpen((v) => !v)}
           aria-label="Toggle navigation menu"
           aria-expanded={open}
+          aria-controls="mobile-navigation"
         >
           {open ? <X size={22} /> : <Menu size={22} />}
         </button>
       </div>
 
       {open && (
-        <nav className="border-t border-navy-100 bg-white px-4 pb-4 pt-2 md:hidden">
+        <nav id="mobile-navigation" className="border-t border-navy-100 bg-white px-4 pb-4 pt-2 md:hidden">
           {NAV_ITEMS.map((item) => (
             <NavLink
               key={item.to}

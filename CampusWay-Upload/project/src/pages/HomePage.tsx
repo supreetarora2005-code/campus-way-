@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Search, MapPin, Navigation, BookOpen, UtensilsCrossed, GraduationCap, ArrowRight, Compass, Quote } from 'lucide-react';
-import MapPlaceholder from '@/components/MapPlaceholder';
+import CampusMap from '@/components/CampusMapLoader';
 import { useLanguage } from '@/i18n/LanguageContext';
-import { CAMPUS_LOCATIONS, CATEGORIES, type CampusLocation } from '@/data/campus';
+import { getCategoryName, useCampusDirectory, type VerifiedCampusLocation } from '@/data/verified-campus';
 import { RNSIT } from '@/i18n/translations';
 
 const QUICK_LINKS: { key: string; query: string; icon: typeof Search }[] = [
@@ -13,24 +13,25 @@ const QUICK_LINKS: { key: string; query: string; icon: typeof Search }[] = [
   { key: 'quick.departments', query: 'department', icon: Compass },
 ];
 
-const STATS = [
-  { value: '12+', key: 'stats.locations' },
-  { value: '14', key: 'stats.departments' },
-  { value: '5', key: 'stats.categories' },
-  { value: '24×7', key: 'stats.available' },
-];
-
 export default function HomePage() {
   const [query, setQuery] = useState('');
   const navigate = useNavigate();
-  const { t } = useLanguage();
+  const { lang, t } = useLanguage();
+  const { categories, locations, isLoading, error } = useCampusDirectory();
 
   const submitSearch = (e: React.FormEvent) => {
     e.preventDefault();
     navigate(query.trim() ? `/directory?q=${encodeURIComponent(query.trim())}` : '/directory');
   };
 
-  const goToExploreWith = (loc: CampusLocation) => navigate(`/explore?destination=${loc.id}`);
+  const goToExploreWith = (location: VerifiedCampusLocation) =>
+    navigate(`/explore?destination=${encodeURIComponent(location.slug)}`);
+  const routeableCount = locations.filter((location) => location.isRouteable).length;
+  const stats = [
+    { value: isLoading ? '—' : String(locations.length), key: 'stats.locations' },
+    { value: isLoading ? '—' : String(categories.length), key: 'stats.categories' },
+    { value: isLoading ? '—' : String(routeableCount), key: 'stats.walkable' },
+  ];
 
   return (
     <>
@@ -117,12 +118,13 @@ export default function HomePage() {
           <div className="relative">
             <div className="overflow-hidden rounded-3xl border border-white/15 shadow-2xl shadow-navy-950/50">
               <div className="h-[320px] sm:h-[420px]">
-                <MapPlaceholder onSelectLocation={goToExploreWith} />
+                <CampusMap locations={locations} onSelectLocation={goToExploreWith} />
               </div>
             </div>
+            {error && <p className="mt-3 rounded-xl bg-white px-4 py-3 text-sm text-red-700" role="alert">Verified campus locations could not be loaded.</p>}
             <div className="absolute -bottom-5 left-6 hidden rounded-2xl bg-white px-5 py-3.5 shadow-card-hover sm:block">
-              <p className="text-xs font-medium text-navy-500">{t('hero.nearest')}</p>
-              <p className="text-sm font-bold text-navy-900">{t('cat.Canteen')} · 2 {t('explore.walk')}</p>
+              <p className="text-xs font-medium text-navy-500">Verified locations</p>
+              <p className="text-sm font-bold text-navy-900">{isLoading ? 'Loading…' : `${locations.length} mapped`}</p>
             </div>
           </div>
         </div>
@@ -130,8 +132,8 @@ export default function HomePage() {
 
       {/* Stats */}
       <section className="border-b border-navy-100 bg-navy-50/60">
-        <div className="page-shell grid grid-cols-2 gap-6 py-10 sm:grid-cols-4">
-          {STATS.map((s) => (
+        <div className="page-shell grid grid-cols-1 gap-6 py-10 sm:grid-cols-3">
+          {stats.map((s) => (
             <div key={s.key} className="text-center">
               <p className="font-display text-3xl font-bold text-navy-900">{s.value}</p>
               <p className="mt-1 text-xs font-medium uppercase tracking-wide text-navy-500">{t(s.key)}</p>
@@ -148,19 +150,19 @@ export default function HomePage() {
             {t('section.everything.sub')}
           </p>
         </div>
-        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
-          {CATEGORIES.map((c) => (
+        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
+          {categories.map((category) => (
             <Link
-              key={c}
-              to={`/directory?category=${encodeURIComponent(c)}`}
+              key={category.slug}
+              to={`/directory?category=${encodeURIComponent(category.slug)}`}
               className="group rounded-2xl border border-navy-100 bg-white p-6 text-center shadow-card transition hover:-translate-y-1 hover:border-teal-300 hover:shadow-card-hover"
             >
               <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-teal-50 text-teal-600 transition group-hover:bg-teal-500 group-hover:text-white">
                 <MapPin size={20} />
               </span>
-              <p className="mt-4 text-sm font-semibold text-navy-900">{t(`cat.${c}`)}</p>
+              <p className="mt-4 text-sm font-semibold text-navy-900">{getCategoryName(category, lang)}</p>
               <p className="mt-1 text-xs text-navy-500">
-                {CAMPUS_LOCATIONS.filter((l) => l.category === c).length} {t('section.locations')}
+                {locations.filter((location) => location.category.slug === category.slug).length} {t('section.locations')}
               </p>
             </Link>
           ))}

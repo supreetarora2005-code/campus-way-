@@ -37,9 +37,9 @@ const T: Dict = {
   'hero.title1': { en: 'Find Your Way Around', kn: 'ಕ್ಯಾಂಪಸ್‌ನಲ್ಲಿ ನಿಮ್ಮ ದಾರಿ', hi: 'कैंपस में अपना रास्ता' },
   'hero.title2': { en: 'RNSIT Campus', kn: 'ಆರ್‌ಎನ್‌ಎಸ್‌ಐಟಿ ಕ್ಯಾಂಪಸ್', hi: 'आरएनएसआईटी कैंपस' },
   'hero.subtitle': {
-    en: 'CampusWay helps students, faculty and visitors instantly locate buildings, classrooms, laboratories and facilities across the RNSIT campus — no more wandering the corridors asking for directions.',
-    kn: 'ಕ್ಯಾಂಪಸ್‌ವೇ ಆರ್‌ಎನ್‌ಎಸ್‌ಐಟಿ ಕ್ಯಾಂಪಸ್‌ನಲ್ಲಿ ಕಟ್ಟಡಗಳು, ತರಗತಿ ಕೋಣೆಗಳು, ಪ್ರಯೋಗಾಲಯಗಳು ಮತ್ತು ಸೌಲಭ್ಯಗಳನ್ನು ತಕ್ಷಣ ಹುಡುಕಲು ವಿದ್ಯಾರ್ಥಿಗಳು, ಶಿಕ್ಷಕರು ಮತ್ತು ಸಂದರ್ಶಕರಿಗೆ ಸಹಾಯ ಮಾಡುತ್ತದೆ.',
-    hi: 'कैंपसवे छात्रों, शिक्षकों और आगंतुकों को आरएनएसआईटी कैंपस में भवन, कक्षाएं, प्रयोगशालाएं और सुविधाएं तुरंत खोजने में मदद करता है।',
+    en: 'CampusWay helps students, faculty and visitors find RNSIT locations that have been checked against their published sources, with a live map and searchable directory.',
+    kn: 'ಪ್ರಕಟಿತ ಮೂಲಗಳೊಂದಿಗೆ ಪರಿಶೀಲಿಸಿದ ಆರ್‌ಎನ್‌ಎಸ್‌ಐಟಿ ಸ್ಥಳಗಳನ್ನು ಲೈವ್ ನಕ್ಷೆ ಮತ್ತು ಹುಡುಕಬಹುದಾದ ಡೈರೆಕ್ಟರಿಯ ಮೂಲಕ ಹುಡುಕಲು ಕ್ಯಾಂಪಸ್‌ವೇ ಸಹಾಯ ಮಾಡುತ್ತದೆ.',
+    hi: 'कैंपसवे लाइव मानचित्र और खोज योग्य डायरेक्टरी के माध्यम से प्रकाशित स्रोतों से सत्यापित आरएनएसआईटी स्थान खोजने में मदद करता है।',
   },
   'hero.searchPlaceholder': { en: 'Search a location — e.g. library, canteen, ECE dept…', kn: 'ಸ್ಥಳ ಹುಡುಕಿ — ಉದಾ. ಗ್ರಂಥಾಲಯ, ಅಪ್ಪಣೆ…', hi: 'स्थान खोजें — जैसे पुस्तकालय, कैंटीन…' },
   'hero.search': { en: 'Search', kn: 'ಹುಡುಕಿ', hi: 'खोजें' },
@@ -54,10 +54,9 @@ const T: Dict = {
   'quick.departments': { en: 'Departments', kn: 'ಇಲಾಖೆಗಳು', hi: 'विभाग' },
 
   // Stats
-  'stats.locations': { en: 'Mapped Locations', kn: 'ನಕ್ಷೆಯ ಸ್ಥಳಗಳು', hi: 'मैप किए स्थान' },
-  'stats.departments': { en: 'Departments', kn: 'ಇಲಾಖೆಗಳು', hi: 'विभाग' },
-  'stats.categories': { en: 'Categories', kn: 'ವರ್ಗಗಳು', hi: 'श्रेणियां' },
-  'stats.available': { en: 'Always Available', kn: 'ಯಾವಾಗಲೂ ಲಭ್ಯ', hi: 'हमेशा उपलब्ध' },
+  'stats.locations': { en: 'Verified Locations', kn: 'ಪರಿಶೀಲಿಸಿದ ಸ್ಥಳಗಳು', hi: 'सत्यापित स्थान' },
+  'stats.categories': { en: 'Active Categories', kn: 'ಸಕ್ರಿಯ ವರ್ಗಗಳು', hi: 'सक्रिय श्रेणियां' },
+  'stats.walkable': { en: 'Route-ready locations', kn: 'ದಾರಿಗೆ ಸಿದ್ಧ ಸ್ಥಳಗಳು', hi: 'मार्ग-तैयार स्थान' },
 
   // Sections
   'section.everything.title': { en: 'Everything at RNSIT, One Search Away', kn: 'ಆರ್‌ಎನ್‌ಎಸ್‌ಐಟಿ‌ನ ಎಲ್ಲವೂ, ಒಂದೇ ಹುಡುಕಾಟದಲ್ಲಿ', hi: 'आरएनएसआईटी का सब कुछ, एक खोज में' },
@@ -77,13 +76,13 @@ const T: Dict = {
   'step1.title': { en: 'Search or Browse', kn: 'ಹುಡುಕಿ ಅಥವಾ ನೋಡಿ', hi: 'खोजें या ब्राउज़ करें' },
   'step1.text': { en: 'Type a building name, a department, or pick a category from the campus directory.', kn: 'ಕಟ್ಟಡದ ಹೆಸರು ಅಥವಾ ಇಲಾಖೆಯನ್ನು ಟೈಪ್ ಮಾಡಿ, ಅಥವಾ ವರ್ಗವನ್ನು ಆಯ್ಕೆ ಮಾಡಿ.', hi: 'भवन का नाम या विभाग टाइप करें, या श्रेणी चुनें।' },
   'step2.title': { en: 'See It on the Map', kn: 'ನಕ್ಷೆಯಲ್ಲಿ ನೋಡಿ', hi: 'मैप पर देखें' },
-  'step2.text': { en: 'Every location is pinned on the campus map so you know exactly where it sits.', kn: 'ಪ್ರತಿಯೊಂದು ಸ್ಥಳವು ನಕ್ಷೆಯಲ್ಲಿ ಗುರುತಿಸಲ್ಪಟ್ಟಿದೆ, ಹೀಗಾಗಿ ನಿಖರವಾದ ಸ್ಥಳ ಗೊತ್ತಾಗುತ್ತದೆ.', hi: 'हर स्थान मैप पर पिन किया गया है, इसलिए आपको सटीक जगह पता चलती है।' },
-  'step3.title': { en: 'Navigate There', kn: 'ಅಲ್ಲಿಗೆ ನ್ಯಾವಿಗೇಟ್ ಮಾಡಿ', hi: 'वहां नेविगेट करें' },
-  'step3.text': { en: 'Set your starting point and destination to see the walking route across campus.', kn: 'ನಿಮ್ಮ ಆರಂಭ ಸ್ಥಳ ಮತ್ತು ಗಮ್ಯಸ್ಥಾನವನ್ನು ಆಯ್ಕೆ ಮಾಡಿ ದಾರಿಯನ್ನು ನೋಡಿ.', hi: 'शुरुआती और गंतव्य स्थान चुनें और पैदल रास्ता देखें।' },
+  'step2.text': { en: 'Only campus locations with verified coordinates appear on the map; approximate reference points are clearly labeled.', kn: 'ಪರಿಶೀಲಿಸಿದ ನಿರ್ದೇಶಾಂಕಗಳಿರುವ ಸ್ಥಳಗಳು ಮಾತ್ರ ನಕ್ಷೆಯಲ್ಲಿ ಕಾಣಿಸುತ್ತವೆ; ಅಂದಾಜು ಉಲ್ಲೇಖ ಬಿಂದುಗಳನ್ನು ಸ್ಪಷ್ಟವಾಗಿ ಗುರುತಿಸಲಾಗುತ್ತದೆ.', hi: 'मानचित्र पर केवल सत्यापित निर्देशांक वाले स्थान दिखते हैं; अनुमानित संदर्भ बिंदुओं को स्पष्ट रूप से चिह्नित किया जाता है।' },
+  'step3.title': { en: 'Get Walking Directions', kn: 'ನಡೆದು ಹೋಗುವ ದಿಕ್ಕುಗಳನ್ನು ಪಡೆಯಿರಿ', hi: 'पैदल दिशा-निर्देश पाएं' },
+  'step3.text': { en: 'Share your location and request a route only to a verified, precise destination supported by the walking network.', kn: 'ನಿಮ್ಮ ಸ್ಥಳವನ್ನು ಹಂಚಿ, ನಡೆದು ಹೋಗುವ ಜಾಲ ಬೆಂಬಲಿಸುವ ಪರಿಶೀಲಿಸಿದ ನಿಖರ ಗಮ್ಯಸ್ಥಾನಕ್ಕೆ ಮಾತ್ರ ದಾರಿ ಕೇಳಿ.', hi: 'अपना स्थान साझा करें और पैदल नेटवर्क द्वारा समर्थित सत्यापित, सटीक गंतव्य के लिए ही मार्ग मांगें।' },
 
   // Explore
   'explore.title': { en: 'Explore RNSIT Campus', kn: 'ಆರ್‌ಎನ್‌ಎಸ್‌ಐಟಿ ಕ್ಯಾಂಪಸ್ ಅನ್ವೇಷಿಸಿ', hi: 'आरएनएसआईटी कैंपस एक्सप्लोर करें' },
-  'explore.subtitle': { en: 'Pick a category, search for a location, then set your start and destination to plan your route across campus.', kn: 'ವರ್ಗವನ್ನು ಆಯ್ಕೆ ಮಾಡಿ, ಸ್ಥಳ ಹುಡುಕಿ, ನಂತರ ಆರಂಭ ಮತ್ತು ಗಮ್ಯಸ್ಥಾನವನ್ನು ಹೊಂದಿಸಿ.', hi: 'श्रेणी चुनें, स्थान खोजें, फिर शुरुआत और गंतव्य सेट करें।' },
+  'explore.subtitle': { en: 'Search verified campus locations, select a map pin, and request walking directions when an exact, routeable destination is available.', kn: 'ಪರಿಶೀಲಿಸಿದ ಕ್ಯಾಂಪಸ್ ಸ್ಥಳಗಳನ್ನು ಹುಡುಕಿ, ನಕ್ಷೆಯಲ್ಲಿ ಆಯ್ಕೆಮಾಡಿ, ನಿಖರವಾದ ದಾರಿ-ಸಾಧ್ಯ ಗಮ್ಯಸ್ಥಾನ ಲಭ್ಯವಿದ್ದಾಗ ನಡೆದು ಹೋಗುವ ದಿಕ್ಕುಗಳನ್ನು ಪಡೆಯಿರಿ.', hi: 'सत्यापित कैंपस स्थान खोजें, मानचित्र पर चुनें और सटीक मार्ग-योग्य गंतव्य उपलब्ध होने पर पैदल दिशा-निर्देश पाएं।' },
   'explore.search': { en: 'Search Location', kn: 'ಸ್ಥಳ ಹುಡುಕಿ', hi: 'स्थान खोजें' },
   'explore.searchPlaceholder': { en: 'Building, department, facility…', kn: 'ಕಟ್ಟಡ, ಇಲಾಖೆ, ಸೌಲಭ್ಯ…', hi: 'भवन, विभाग, सुविधा…' },
   'explore.categories': { en: 'Categories', kn: 'ವರ್ಗಗಳು', hi: 'श्रेणियां' },
@@ -103,7 +102,7 @@ const T: Dict = {
 
   // Directory
   'dir.title': { en: 'RNSIT Campus Directory', kn: 'ಆರ್‌ಎನ್‌ಎಸ್‌ಐಟಿ ಕ್ಯಾಂಪಸ್ ಡೈರೆಕ್ಟರಿ', hi: 'आरएनएसआईटी कैंपस डायरेक्टरी' },
-  'dir.subtitle': { en: 'Every building and facility at RNSIT — search by name, department or facility, or filter by category.', kn: 'ಆರ್‌ಎನ್‌ಎಸ್‌ಐಟಿ‌ನ ಎಲ್ಲಾ ಕಟ್ಟಡ ಮತ್ತು ಸೌಲಭ್ಯಗಳು — ಹೆಸರು, ಇಲಾಖೆ ಅಥವಾ ವರ್ಗದ ಮೂಲಕ ಹುಡುಕಿ.', hi: 'आरएनएसआईटी की हर इमारत और सुविधा — नाम, विभाग या श्रेणी से खोजें।' },
+  'dir.subtitle': { en: 'Search locations reviewed against their linked sources, or filter the verified campus directory by category.', kn: 'ಮೂಲಗಳೊಂದಿಗೆ ಪರಿಶೀಲಿಸಿದ ಸ್ಥಳಗಳನ್ನು ಹುಡುಕಿ ಅಥವಾ ಪರಿಶೀಲಿಸಿದ ಕ್ಯಾಂಪಸ್ ಡೈರೆಕ್ಟರಿಯನ್ನು ವರ್ಗದ ಮೂಲಕ ವಿಂಗಡಿಸಿ.', hi: 'स्रोतों से सत्यापित स्थान खोजें या सत्यापित कैंपस डायरेक्टरी को श्रेणी के अनुसार फ़िल्टर करें।' },
   'dir.searchPlaceholder': { en: 'Search buildings, labs, departments…', kn: 'ಕಟ್ಟಡಗಳು, ಪ್ರಯೋಗಾಲಯಗಳು, ಇಲಾಖೆಗಳು…', hi: 'भवन, लैब, विभाग खोजें…' },
   'dir.allLocations': { en: 'All Locations', kn: 'ಎಲ್ಲಾ ಸ್ಥಳಗಳು', hi: 'सभी स्थान' },
   'dir.showing': { en: 'Showing', kn: 'ತೋರಿಸಲಾಗಿದೆ', hi: 'दिखा रहे हैं' },
@@ -112,7 +111,7 @@ const T: Dict = {
   'dir.notFound.title': { en: 'No locations found', kn: 'ಸ್ಥಳಗಳು ಸಿಗಲಿಲ್ಲ', hi: 'कोई स्थान नहीं मिला' },
   'dir.notFound.text': { en: "Try a different name or clear the category filter to see everything on campus.", kn: 'ಬೇರೆ ಹೆಸರನ್ನು ಪ್ರಯತ್ನಿಸಿ ಅಥವಾ ವರ್ಗ ಫಿಲ್ಟರ್ ತೆರವುಗೊಳಿಸಿ.', hi: 'दूसरा नाम आज़माएं या श्रेणी फ़िल्टर हटाएं।' },
   'dir.cantFind': { en: "Can't find what you're looking for?", kn: 'ನೀವು ಹುಡುಕುತ್ತಿರುವುದು ಸಿಗಲಿಲ್ಲವೇ?', hi: 'जो आप खोज रहे हैं वह नहीं मिल रहा?' },
-  'dir.cantFind.text': { en: 'Open the interactive campus map and explore every pin, or ask the AI assistant.', kn: 'ಸಂವಾದಾತ್ಮಕ ನಕ್ಷೆ ತೆರೆದು ಎಲ್ಲಾ ಪಿನ್‌ಗಳನ್ನು ನೋಡಿ, ಅಥವಾ ಎಐ ಸಹಾಯಕರನ್ನು ಕೇಳಿ.', hi: 'इंटरैक्टिव मैप खोलें और हर पिन देखें, या एआई सहायक से पूछें।' },
+  'dir.cantFind.text': { en: 'Open the interactive map to explore the verified locations currently available.', kn: 'ಪ್ರಸ್ತುತ ಲಭ್ಯವಿರುವ ಪರಿಶೀಲಿಸಿದ ಸ್ಥಳಗಳನ್ನು ಅನ್ವೇಷಿಸಲು ಸಂವಾದಾತ್ಮಕ ನಕ್ಷೆಯನ್ನು ತೆರೆಯಿರಿ.', hi: 'वर्तमान में उपलब्ध सत्यापित स्थानों को देखने के लिए इंटरैक्टिव मानचित्र खोलें।' },
   'dir.openMap': { en: 'Open Campus Map', kn: 'ಕ್ಯಾಂಪಸ್ ನಕ್ಷೆ ತೆರೆಯಿರಿ', hi: 'कैंपस मैप खोलें' },
 
   // Details
@@ -140,9 +139,9 @@ const T: Dict = {
     hi: 'आरएनएसआईटी जैसे बड़े कैंपस में भ्रम हो सकता है — विशेषकर प्रवेश और परीक्षा के दिनों में। कैंपसवे उस भ्रम को दूर करने के लिए बनाया गया है।',
   },
   'about.purposeText2': {
-    en: 'The project demonstrates a complete navigation experience for the RNSIT campus using sample data, with a clean structure that can later be connected to a live map service, indoor routing and real-time updates.',
-    kn: 'ಈ ಯೋಜನೆ ಮಾದರಿ ಡೇಟಾವನ್ನು ಬಳಸಿ ಆರ್‌ಎನ್‌ಎಸ್‌ಐಟಿ ಕ್ಯಾಂಪಸ್‌ಗಾಗಿ ಸಂಪೂರ್ಣ ನ್ಯಾವಿಗೇಶನ್ ಅನುಭವವನ್ನು ತೋರಿಸುತ್ತದೆ.',
-    hi: 'यह परियोजना नमूना डेटा का उपयोग करके आरएनएसआईटी कैंपस के लिए एक संपूर्ण नेविगेशन अनुभव प्रदर्शित करती है।',
+    en: 'CampusWay now reads verified location records from the connected campus database. The map labels approximate references, and walking directions remain disabled until precise building or entrance coordinates are verified.',
+    kn: 'ಕ್ಯಾಂಪಸ್‌ವೇ ಸಂಪರ್ಕಿತ ಡೇಟಾಬೇಸ್‌ನಿಂದ ಪರಿಶೀಲಿಸಿದ ಸ್ಥಳದ ದಾಖಲೆಗಳನ್ನು ಪಡೆಯುತ್ತದೆ. ಅಂದಾಜು ಉಲ್ಲೇಖಗಳನ್ನು ನಕ್ಷೆಯಲ್ಲಿ ಗುರುತಿಸಲಾಗುತ್ತದೆ; ಕಟ್ಟಡ ಅಥವಾ ಪ್ರವೇಶದ್ವಾರದ ನಿಖರ ನಿರ್ದೇಶಾಂಕಗಳನ್ನು ಪರಿಶೀಲಿಸುವವರೆಗೆ ನಡೆದು ಹೋಗುವ ದಿಕ್ಕುಗಳು ಲಭ್ಯವಿರುವುದಿಲ್ಲ.',
+    hi: 'कैंपसवे अब जुड़े हुए कैंपस डेटाबेस से सत्यापित स्थान रिकॉर्ड पढ़ता है। अनुमानित संदर्भों को मानचित्र पर चिह्नित किया जाता है और सटीक भवन या प्रवेश निर्देशांक सत्यापित होने तक पैदल दिशा-निर्देश उपलब्ध नहीं होंगे।',
   },
   'about.includes': { en: 'What CampusWay Includes', kn: 'ಕ್ಯಾಂಪಸ್‌ವೇ‌ನಲ್ಲಿ ಏನಿದೆ', hi: 'कैंपसवे में क्या शामिल है' },
   'about.includesSub': { en: 'Everything works together as one complete navigation experience.', kn: 'ಎಲ್ಲವೂ ಒಟ್ಟಿಗೆ ಸಂಪೂರ್ಣ ನ್ಯಾವಿಗೇಶನ್ ಅನುಭವವನ್ನು ನೀಡುತ್ತದೆ.', hi: 'सब कुछ मिलकर एक संपूर्ण नेविगेशन अनुभव बनाता है।' },
@@ -174,11 +173,11 @@ const T: Dict = {
 
   // Feature cards
   'feature1.title': { en: 'Interactive Campus Map', kn: 'ಸಂವಾದಾತ್ಮಕ ಕ್ಯಾಂಪಸ್ ನಕ್ಷೆ', hi: 'इंटरैक्टिव कैंपस मैप' },
-  'feature1.text': { en: 'A campus overview with pins for every RNSIT location — tap a pin to see what it is.', kn: 'ಪ್ರತಿಯೊಂದು ಸ್ಥಳಕ್ಕೂ ಪಿನ್ ಹೊಂದಿದ ಕ್ಯಾಂಪಸ್ ನೋಟ — ಪಿನ್ ಒತ್ತಿ ವಿವರ ನೋಡಲು.', hi: 'हर आरएनएसआईटी स्थान के पिन के साथ कैंपस अवलोकन — पिन टैप करें।' },
+  'feature1.text': { en: 'Verified campus coordinates appear as interactive pins; select one to see its source and location details.', kn: 'ಪರಿಶೀಲಿಸಿದ ಕ್ಯಾಂಪಸ್ ನಿರ್ದೇಶಾಂಕಗಳು ಸಂವಾದಾತ್ಮಕ ಪಿನ್‌ಗಳಾಗಿ ಕಾಣಿಸುತ್ತವೆ; ಮೂಲ ಮತ್ತು ವಿವರಗಳನ್ನು ನೋಡಲು ಆಯ್ಕೆಮಾಡಿ.', hi: 'सत्यापित कैंपस निर्देशांक इंटरैक्टिव पिन के रूप में दिखते हैं; स्रोत और विवरण देखने के लिए चुनें।' },
   'feature2.title': { en: 'Searchable Directory', kn: 'ಹುಡುಕಬಹುದಾದ ಡೈರೆಕ್ಟರಿ', hi: 'खोज योग्य डायरेक्टरी' },
-  'feature2.text': { en: 'Mapped locations with photos, departments, floor-wise room lists and facility details.', kn: 'ಫೋಟೋ, ಇಲಾಖೆಗಳು, ಮಹಡಿ-ವಾರು ಕೋಣೆ ಪಟ್ಟಿಗಳೊಂದಿಗೆ ನಕ್ಷೆಯ ಸ್ಥಳಗಳು.', hi: 'फोटो, विभाग, फ्लोर-वार कमरा सूची के साथ मैप किए स्थान।' },
-  'feature3.title': { en: 'Route Planning', kn: 'ದಾರಿ ಯೋಜನೆ', hi: 'रास्ता योजना' },
-  'feature3.text': { en: 'Pick a starting point and destination to highlight a walking route across campus.', kn: 'ಆರಂಭ ಸ್ಥಳ ಮತ್ತು ಗಮ್ಯಸ್ಥಾನ ಆಯ್ಕೆ ಮಾಡಿ ದಾರಿಯನ್ನು ನೋಡಿ.', hi: 'शुरुआत और गंतव्य चुनें और पैदल रास्ता देखें।' },
+  'feature2.text': { en: 'Search verified locations, review their descriptions and sources, then highlight a result on the map.', kn: 'ಪರಿಶೀಲಿಸಿದ ಸ್ಥಳಗಳನ್ನು ಹುಡುಕಿ, ವಿವರಣೆ ಮತ್ತು ಮೂಲಗಳನ್ನು ನೋಡಿ, ನಂತರ ಫಲಿತಾಂಶವನ್ನು ನಕ್ಷೆಯಲ್ಲಿ ಗುರುತಿಸಿ.', hi: 'सत्यापित स्थान खोजें, विवरण और स्रोत देखें, फिर परिणाम को मानचित्र पर हाइलाइट करें।' },
+  'feature3.title': { en: 'Walking Directions', kn: 'ನಡೆಯುವ ದಿಕ್ಕುಗಳು', hi: 'पैदल दिशा-निर्देश' },
+  'feature3.text': { en: 'Request a walking route from your current location when a precise, verified destination is supported.', kn: 'ನಿಖರವಾದ, ಪರಿಶೀಲಿಸಿದ ಗಮ್ಯಸ್ಥಾನ ಬೆಂಬಲಿತವಾಗಿದ್ದಾಗ ನಿಮ್ಮ ಪ್ರಸ್ತುತ ಸ್ಥಳದಿಂದ ನಡೆದು ಹೋಗುವ ದಾರಿಯನ್ನು ಕೇಳಿ.', hi: 'सटीक, सत्यापित गंतव्य समर्थित होने पर अपने वर्तमान स्थान से पैदल मार्ग मांगें।' },
 
   // AI assistant
   'ai.title': { en: 'CampusWay Assistant', kn: 'ಕ್ಯಾಂಪಸ್‌ವೇ ಸಹಾಯಕ', hi: 'कैंपसवे सहायक' },
@@ -196,7 +195,7 @@ const T: Dict = {
   'footer.tagline': { en: 'The smart way to find buildings, classrooms, labs and facilities across the RNSIT campus — built for students, faculty and visitors.', kn: 'ಆರ್‌ಎನ್‌ಎಸ್‌ಐಟಿ ಕ್ಯಾಂಪಸ್‌ನಲ್ಲಿ ಕಟ್ಟಡಗಳು, ತರಗತಿ ಕೋಣೆಗಳು ಮತ್ತು ಸೌಲಭ್ಯಗಳನ್ನು ಹುಡುಕುವ ಸ್ಮಾರ್ಟ್ ವಿಧಾನ.', hi: 'आरएनएसआईटी कैंपस में भवन, कक्षाएं, लैब और सुविधाएं खोजने का स्मार्ट तरीका।' },
   'footer.explore': { en: 'Explore', kn: 'ಅನ್ವೇಷಿಸಿ', hi: 'एक्सप्लोर' },
   'footer.contact': { en: 'Contact', kn: 'ಸಂಪರ್ಕ', hi: 'संपर्क' },
-  'footer.note': { en: 'CampusWay is a demonstration project built with sample RNSIT campus data.', kn: 'ಕ್ಯಾಂಪಸ್‌ವೇ ಮಾದರಿ ಆರ್‌ಎನ್‌ಎಸ್‌ಐಟಿ ಡೇಟಾವನ್ನು ಬಳಸಿ ನಿರ್ಮಿತ ಪ್ರಾಜೆಕ್ಟ್.', hi: 'कैंपसवे नमूना आरएनएसआईटी डेटा के साथ बनाई गई एक प्रदर्शन परियोजना है।' },
+  'footer.note': { en: 'Campus locations are shown only when their coordinates and source have been verified.', kn: 'ನಿರ್ದೇಶಾಂಕಗಳು ಮತ್ತು ಮೂಲವನ್ನು ಪರಿಶೀಲಿಸಿದಾಗ ಮಾತ್ರ ಕ್ಯಾಂಪಸ್ ಸ್ಥಳಗಳನ್ನು ತೋರಿಸಲಾಗುತ್ತದೆ.', hi: 'कैंपस स्थान तभी दिखाए जाते हैं जब उनके निर्देशांक और स्रोत सत्यापित हों।' },
   'footer.rights': { en: 'Smart Campus Navigation Platform', kn: 'ಸ್ಮಾರ್ಟ್ ಕ್ಯಾಂಪಸ್ ನ್ಯಾವಿಗೇಶನ್ ಪ್ಲಾಟ್‌ಫಾರ್ಮ್', hi: 'स्मार्ट कैंपस नेविगेशन प्लेटफॉर्म' },
 
   // Categories

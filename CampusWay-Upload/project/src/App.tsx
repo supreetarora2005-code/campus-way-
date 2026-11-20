@@ -1,4 +1,5 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useEffect } from 'react';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import HomePage from '@/pages/HomePage';
@@ -13,10 +14,21 @@ import ForgotPasswordPage from '@/auth/ForgotPasswordPage';
 import ResetPasswordPage from '@/auth/ResetPasswordPage';
 import ProfilePage from '@/auth/ProfilePage';
 
+function ScrollToTopOnNavigation() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
+
 export default function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
+        <ScrollToTopOnNavigation />
         <div className="flex min-h-screen flex-col">
           <Navbar />
           <main className="flex-1">
