@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Search, MapPin, Flag, Route as RouteIcon, X, Navigation } from 'lucide-react';
 import MapPlaceholder from '@/components/MapPlaceholder';
+import { useLanguage } from '@/i18n/LanguageContext';
 import {
   CAMPUS_LOCATIONS,
   CATEGORIES,
@@ -15,6 +16,7 @@ export default function ExplorePage() {
   const [query, setQuery] = useState('');
   const [category, setCategory] = useState<Category | 'All'>('All');
   const [startId, setStartId] = useState('main-gate');
+  const { lang } = useLanguage();
   const destinationId = searchParams.get('destination');
 
   const START_OPTIONS = useMemo(
@@ -33,12 +35,12 @@ export default function ExplorePage() {
       const matchesQuery =
         !q ||
         l.name.toLowerCase().includes(q) ||
-        l.description.toLowerCase().includes(q) ||
+        (l.description[lang] ?? l.description.en).toLowerCase().includes(q) ||
         l.category.toLowerCase().includes(q) ||
         l.departments.some((d) => d.toLowerCase().includes(q));
       return matchesCategory && matchesQuery;
     });
-  }, [query, category]);
+  }, [query, category, lang]);
 
   const setDestination = (loc: CampusLocation | undefined) => {
     setSearchParams(loc ? { destination: loc.id } : {});

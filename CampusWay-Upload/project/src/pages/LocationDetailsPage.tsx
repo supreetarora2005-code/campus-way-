@@ -10,10 +10,12 @@ import {
   Compass,
 } from 'lucide-react';
 import MapPlaceholder from '@/components/MapPlaceholder';
+import { useLanguage } from '@/i18n/LanguageContext';
 import { getLocationById, CAMPUS_LOCATIONS } from '@/data/campus';
 
 export default function LocationDetailsPage() {
   const { id } = useParams<{ id: string }>();
+  const { lang } = useLanguage();
   const location = getLocationById(id);
 
   if (!location) {
@@ -39,6 +41,7 @@ export default function LocationDetailsPage() {
   const related = CAMPUS_LOCATIONS.filter(
     (l) => l.category === location.category && l.id !== location.id
   ).slice(0, 3);
+  const descriptionText = location.description[lang] ?? location.description.en;
 
   return (
     <>
@@ -70,7 +73,7 @@ export default function LocationDetailsPage() {
             <h1 className="mt-4 font-display text-3xl font-bold tracking-tight text-navy-900 sm:text-4xl">
               {location.name}
             </h1>
-            <p className="mt-4 leading-relaxed text-navy-600">{location.longDescription}</p>
+            <p className="mt-4 leading-relaxed text-navy-600">{descriptionText}</p>
 
             <div className="mt-6 flex flex-wrap items-center gap-3">
               <span className="inline-flex items-center gap-2 rounded-xl bg-navy-50 px-4 py-2.5 text-sm text-navy-700">
@@ -192,7 +195,7 @@ export default function LocationDetailsPage() {
                     <p className="text-sm font-bold text-navy-900 group-hover:text-teal-700">
                       {l.name}
                     </p>
-                    <p className="mt-0.5 line-clamp-2 text-xs text-navy-500">{l.description}</p>
+                    <p className="mt-0.5 line-clamp-2 text-xs text-navy-500">{l.description[lang] ?? l.description.en}</p>
                   </div>
                 </Link>
               ))}
