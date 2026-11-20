@@ -64,11 +64,11 @@ const T: Dict = {
   'section.how.title': { en: 'How CampusWay Works', kn: 'ಕ್ಯಾಂಪಸ್‌ವೇ ಹೇಗೆ ಕಾರ್ಯನಿರ್ವಹಿಸುತ್ತದೆ', hi: 'कैंपसवे कैसे काम करता है' },
   'section.how.sub': { en: 'Three simple steps from "Where is it?" to "I\'m here."', kn: '"ಎಲ್ಲಿದೆ?" ದಿಂದ "ನಾನು ಬಂದಿದ್ದೇನೆ" ವರೆಗೆ ಮೂರು ಸರಳ ಹಂತಗಳು.', hi: '"यह कहां है?" से "मैं आ गया" तक तीन आसान कदम।' },
   'section.testimonial': {
-    en: '"As a first-year student, CampusWay saved me during orientation week — I found every lab and lecture hall without asking anyone."',
-    kn: '"ಪ್ರಥಮ ವರ್ಷದ ವಿದ್ಯಾರ್ಥಿಯಾಗಿ, ಓರಿಯೆಂಟೇಶನ್ ವಾರದಲ್ಲಿ ಕ್ಯಾಂಪಸ್‌ವೇ ನನಗೆ ಉಳಿಸಿದೆ — ಯಾರನ್ನೂ ಕೇಳದೆ ಎಲ್ಲಾ ಪ್ರಯೋಗಾಲಯಗಳನ್ನು ಕಂಡುಕೊಂಡೆ."',
-    hi: '"प्रथम वर्ष के छात्र के रूप में, कैंपसवे ने ओरिएंटेशन सप्ताह में मेरी मदद की — बिना किसी से पूछे हर लैब और लेक्चर हॉल मिल गया।"',
+    en: 'Locations appear only with verified coordinates and a published source; approximate campus references are clearly labeled.',
+    kn: 'ಪರಿಶೀಲಿಸಿದ ನಿರ್ದೇಶಾಂಕಗಳು ಮತ್ತು ಪ್ರಕಟಿತ ಮೂಲವಿರುವ ಸ್ಥಳಗಳು ಮಾತ್ರ ಕಾಣಿಸುತ್ತವೆ; ಅಂದಾಜು ಕ್ಯಾಂಪಸ್ ಉಲ್ಲೇಖಗಳನ್ನು ಸ್ಪಷ್ಟವಾಗಿ ಗುರುತಿಸಲಾಗುತ್ತದೆ.',
+    hi: 'स्थान केवल सत्यापित निर्देशांक और प्रकाशित स्रोत के साथ दिखते हैं; अनुमानित परिसर संदर्भ स्पष्ट रूप से चिह्नित हैं।',
   },
-  'section.testimonial.author': { en: 'Ananya R. · First-year CSE student, RNSIT', kn: 'ಅನನ್ಯಾ ಆರ್. · ಪ್ರಥಮ ವರ್ಷದ ಸಿಎಸ್‌ಇ ವಿದ್ಯಾರ್ಥಿನಿ, ಆರ್‌ಎನ್‌ಎಸ್‌ಐಟಿ', hi: 'अनन्या आर. · प्रथम वर्ष सीएसई छात्रा, आरएनएसआईटी' },
+  'section.testimonial.author': { en: 'CampusWay data standard', kn: 'ಕ್ಯಾಂಪಸ್‌ವೇ ಡೇಟಾ ಮಾನದಂಡ', hi: 'कैंपसवे डेटा मानक' },
   'section.cta': { en: 'Start Exploring', kn: 'ಅನ್ವೇಷಿಸಲು ಪ್ರಾರಂಭಿಸಿ', hi: 'एक्सप्लोर करना शुरू करें' },
   'section.locations': { en: 'locations', kn: 'ಸ್ಥಳಗಳು', hi: 'स्थान' },
 
