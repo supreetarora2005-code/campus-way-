@@ -35,8 +35,6 @@ export const CATEGORIES: Category[] = [
   'Facilities',
 ];
 
-const en = (s: string): LocalizedText => ({ en: s, kn: s, hi: s });
-
 export const CAMPUS_LOCATIONS: CampusLocation[] = [
   {
     id: 'cse-block',

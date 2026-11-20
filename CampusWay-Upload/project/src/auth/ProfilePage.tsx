@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link, useNavigate } from 'react-router-dom';
-import { LogOut, ShieldCheck, Save, UserRound } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { LogOut, Save, UserRound } from 'lucide-react';
 import AuthShell from './AuthShell';
 import { PasswordInput, FormMessage } from './FormControls';
 import { useAuth } from './AuthContext';
@@ -13,7 +13,7 @@ interface ProfileForm {
 }
 
 export default function ProfilePage() {
-  const { user, profile, isAdmin, loading, signOut, refreshProfile } = useAuth();
+  const { user, profile, loading, signOut, refreshProfile } = useAuth();
   const navigate = useNavigate();
   const [status, setStatus] = useState<'idle' | 'saved' | 'error'>('idle');
   const [serverError, setServerError] = useState('');
@@ -69,19 +69,6 @@ export default function ProfilePage() {
             <p className="truncate text-xs text-navy-500">{user.email}</p>
           </div>
         </div>
-
-        {isAdmin && (
-          <Link
-            to="/admin"
-            className="flex items-center gap-3 rounded-2xl bg-teal-50 p-4 ring-1 ring-teal-200 transition hover:bg-teal-100"
-          >
-            <ShieldCheck size={20} className="text-teal-700" />
-            <div>
-              <p className="text-sm font-bold text-teal-900">Administrator</p>
-              <p className="text-xs text-teal-700">Open the admin dashboard to manage campus data</p>
-            </div>
-          </Link>
-        )}
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4" noValidate>
           <div>

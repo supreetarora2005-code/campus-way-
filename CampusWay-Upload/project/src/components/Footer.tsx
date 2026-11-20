@@ -15,7 +15,7 @@ export default function Footer() {
               RNS
             </span>
             <img
-  src="/images/rnsit-logo.webp"
+  src="/images/rnsit-logo.png"
   alt="RNSIT Logo"
   className="h-11 w-auto object-contain"
 />
