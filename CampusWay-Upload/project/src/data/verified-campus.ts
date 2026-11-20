@@ -34,6 +34,19 @@ export interface VerifiedCampusLocation {
   isRouteable: boolean;
 }
 
+export interface CampusDirectoryEntry {
+  id: string;
+  slug: string;
+  name: string;
+  nameKn: string | null;
+  nameHi: string | null;
+  category: CampusCategory;
+  description: Record<string, string>;
+  sourceName: string;
+  sourceUrl: string;
+  verifiedAt: string;
+}
+
 interface CampusCategoryRow {
   slug: string;
   name: string;
@@ -59,15 +72,29 @@ interface CampusLocationRow {
   is_routeable: boolean;
 }
 
+interface CampusDirectoryEntryRow {
+  id: string;
+  slug: string;
+  name: string;
+  name_kn: string | null;
+  name_hi: string | null;
+  category_slug: string;
+  description: unknown;
+  source_name: string;
+  source_url: string;
+  verified_at: string;
+}
+
 interface CampusDirectory {
   categories: CampusCategory[];
   locations: VerifiedCampusLocation[];
+  entries: CampusDirectoryEntry[];
 }
 
 const DIRECTORY_KEY = 'campusway:verified-campus-directory';
 
 async function fetchCampusDirectory(): Promise<CampusDirectory> {
-  const [categoryResult, locationResult] = await Promise.all([
+  const [categoryResult, locationResult, entryResult] = await Promise.all([
     supabase
       .from('campus_categories')
       .select('slug, name, sort_order')
@@ -83,10 +110,16 @@ async function fetchCampusDirectory(): Promise<CampusDirectory> {
       .not('latitude', 'is', null)
       .not('longitude', 'is', null)
       .order('name'),
+    supabase
+      .from('campus_directory_entries')
+      .select('id, slug, name, name_kn, name_hi, category_slug, description, source_name, source_url, verified_at')
+      .eq('is_active', true)
+      .order('name'),
   ]);
 
   if (categoryResult.error) throw categoryResult.error;
   if (locationResult.error) throw locationResult.error;
+  if (entryResult.error) throw entryResult.error;
 
   const categories = (categoryResult.data ?? []) as CampusCategoryRow[];
   const categoriesBySlug = new Map(
@@ -139,9 +172,35 @@ async function fetchCampusDirectory(): Promise<CampusDirectory> {
     ];
   });
 
+  const entries = ((entryResult.data ?? []) as CampusDirectoryEntryRow[]).map((row) => {
+    const category = categoriesBySlug.get(row.category_slug) ?? {
+      slug: row.category_slug,
+      name: row.category_slug,
+      sortOrder: Number.MAX_SAFE_INTEGER,
+    };
+    const description =
+      row.description && typeof row.description === 'object' && !Array.isArray(row.description)
+        ? (row.description as Record<string, string>)
+        : {};
+
+    return {
+      id: row.id,
+      slug: row.slug,
+      name: row.name,
+      nameKn: row.name_kn,
+      nameHi: row.name_hi,
+      category,
+      description,
+      sourceName: row.source_name,
+      sourceUrl: row.source_url,
+      verifiedAt: row.verified_at,
+    };
+  });
+
   return {
     categories: Array.from(categoriesBySlug.values()),
     locations,
+    entries,
   };
 }
 
@@ -155,6 +214,7 @@ export function useCampusDirectory() {
   return {
     categories: data?.categories ?? [],
     locations: data?.locations ?? [],
+    entries: data?.entries ?? [],
     isLoading,
     error,
     refresh: mutate,

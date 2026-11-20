@@ -4,7 +4,6 @@ import { Search, MapPin, Navigation, BookOpen, UtensilsCrossed, GraduationCap, A
 import CampusMap from '@/components/CampusMapLoader';
 import { useLanguage } from '@/i18n/LanguageContext';
 import { getCategoryName, useCampusDirectory, type VerifiedCampusLocation } from '@/data/verified-campus';
-import { RNSIT } from '@/i18n/translations';
 
 const QUICK_LINKS: { key: string; query: string; icon: typeof Search }[] = [
   { key: 'quick.library', query: 'library', icon: BookOpen },
@@ -209,12 +208,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* RNSIT note */}
-      <section className="page-shell pb-16">
-        <p className="mx-auto max-w-3xl text-center text-sm leading-relaxed text-navy-500">
-          {RNSIT.fullName} · Est. {RNSIT.established} · {RNSIT.contact.address}
-        </p>
-      </section>
     </>
   );
 }

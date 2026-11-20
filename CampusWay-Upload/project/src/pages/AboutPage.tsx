@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import {
   Target,
   Users,
@@ -6,12 +6,7 @@ import {
   Accessibility,
   Clock,
   CheckCircle2,
-  Send,
-  Mail,
-  Phone,
-  MapPin,
 } from 'lucide-react';
-import { RNSIT } from '@/i18n/translations';
 
 const BENEFITS = [
   {
@@ -37,31 +32,6 @@ const BENEFITS = [
 ];
 
 export default function AboutPage() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [message, setMessage] = useState('');
-  const [sent, setSent] = useState(false);
-  const [error, setError] = useState('');
-
-  const submitFeedback = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!name.trim() || !email.trim() || !message.trim()) {
-      setError('Please fill in your name, email and message.');
-      return;
-    }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
-      setError('Please enter a valid email address.');
-      return;
-    }
-    setError('');
-    const subject = encodeURIComponent('CampusWay location feedback');
-    const body = encodeURIComponent(
-      `Name: ${name.trim()}\nReply email: ${email.trim()}\n\n${message.trim()}`
-    );
-    window.location.href = `mailto:${RNSIT.contact.email}?subject=${subject}&body=${body}`;
-    setSent(true);
-  };
-
   return (
     <>
       {/* Intro */}
@@ -155,118 +125,24 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Contact / feedback */}
+      {/* CampusWay project callout */}
       <section className="page-shell py-14 lg:py-18">
-        <div className="overflow-hidden rounded-3xl border border-navy-100 shadow-card">
-          <div className="grid lg:grid-cols-[1fr_1.2fr]">
-            <div className="bg-navy-900 p-8 sm:p-10">
-              <h2 className="font-display text-2xl font-bold text-white">
-                Contact & Feedback
-              </h2>
-              <p className="mt-3 text-sm leading-relaxed text-navy-200">
-                Have a correction for a verified location or an idea to improve CampusWay? Use the form to prepare an email to RNSIT; it is submitted only when you send it from your email app.
-              </p>
-              <ul className="mt-8 space-y-4 text-sm text-navy-100">
-                <li className="flex items-center gap-3">
-                  <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/10">
-                    <Mail size={15} className="text-teal-400" />
-                  </span>
-                  <a href={`mailto:${RNSIT.contact.email}`} className="transition hover:text-white">{RNSIT.contact.email}</a>
-                </li>
-                <li className="flex items-center gap-3">
-                  <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/10">
-                    <Phone size={15} className="text-teal-400" />
-                  </span>
-                  <a href={`tel:${RNSIT.contact.phone.replace(/[^+\d]/g, '')}`} className="transition hover:text-white">{RNSIT.contact.phone}</a>
-                </li>
-                <li className="flex items-center gap-3">
-                  <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/10">
-                    <MapPin size={15} className="text-teal-400" />
-                  </span>
-                  {RNSIT.contact.address}
-                </li>
-              </ul>
-            </div>
-
-            <div className="bg-white p-8 sm:p-10">
-              {sent ? (
-                <div className="flex h-full flex-col items-center justify-center py-10 text-center">
-                  <span className="flex h-14 w-14 items-center justify-center rounded-full bg-teal-50">
-                    <CheckCircle2 size={28} className="text-teal-600" />
-                  </span>
-                  <h3 className="mt-5 text-lg font-bold text-navy-900">Thank you, {name.trim()}!</h3>
-                  <p className="mt-2 max-w-xs text-sm text-navy-600" role="status">
-                    Your email app should open with a ready-to-send draft. Send it there to submit your feedback.
-                  </p>
-                  <button
-                    onClick={() => {
-                      setSent(false);
-                      setName('');
-                      setEmail('');
-                      setMessage('');
-                    }}
-                    className="mt-6 text-sm font-semibold text-teal-700 underline-offset-4 transition hover:underline"
-                  >
-                    Send another message
-                  </button>
-                </div>
-              ) : (
-                <form onSubmit={submitFeedback} className="space-y-4" noValidate>
-                  <div className="grid gap-4 sm:grid-cols-2">
-                    <div>
-                      <label htmlFor="fb-name" className="text-sm font-semibold text-navy-900">
-                        Name
-                      </label>
-                      <input
-                        id="fb-name"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        placeholder="Your name"
-                        className="input-field mt-1.5"
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="fb-email" className="text-sm font-semibold text-navy-900">
-                        Email
-                      </label>
-                      <input
-                        id="fb-email"
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        placeholder="you@college.edu"
-                        className="input-field mt-1.5"
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <label htmlFor="fb-message" className="text-sm font-semibold text-navy-900">
-                      Message
-                    </label>
-                    <textarea
-                      id="fb-message"
-                      value={message}
-                      onChange={(e) => setMessage(e.target.value)}
-                      placeholder="Share feedback, a correction, or an idea…"
-                      rows={5}
-                      className="input-field mt-1.5 resize-none"
-                    />
-                  </div>
-                  {error && (
-                    <p className="rounded-xl bg-red-50 px-4 py-2.5 text-sm font-medium text-red-700" role="alert">
-                      {error}
-                    </p>
-                  )}
-                  <button
-                    type="submit"
-                    className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-teal-500 py-3.5 text-sm font-semibold text-white shadow-sm transition hover:bg-teal-600 sm:w-auto sm:px-8"
-                  >
-                    <Send size={15} /> Send Feedback
-                  </button>
-                </form>
-              )}
-            </div>
+        <div className="flex flex-col gap-6 rounded-3xl bg-navy-900 p-8 shadow-card sm:p-10 md:flex-row md:items-center md:justify-between">
+          <div className="max-w-2xl">
+            <span className="text-xs font-semibold uppercase tracking-[0.18em] text-teal-300">CampusWay</span>
+            <h2 className="mt-3 font-display text-2xl font-bold text-white sm:text-3xl">
+              Built to make campus discovery simpler
+            </h2>
+            <p className="mt-3 text-sm leading-relaxed text-navy-200 sm:text-base">
+              CampusWay brings a searchable campus directory and interactive map together, with clear sources and a focus on accurate location information.
+            </p>
           </div>
+          <Link
+            to="/explore"
+            className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-teal-500 px-6 py-3 text-sm font-semibold text-white transition hover:bg-teal-600"
+          >
+            <MapPinned size={16} /> Explore CampusWay
+          </Link>
         </div>
       </section>
     </>
