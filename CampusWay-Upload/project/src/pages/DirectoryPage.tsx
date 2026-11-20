@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-import { Building2, ChevronRight, ExternalLink, MapPin, MapPinOff, Search, SearchX } from 'lucide-react';
+import { ChevronRight, MapPin, MapPinOff, Search, SearchX } from 'lucide-react';
+import DirectoryEntryCard from '@/components/DirectoryEntryCard';
 import { useLanguage } from '@/i18n/LanguageContext';
 import {
   getCategoryName,
@@ -108,13 +109,13 @@ export default function DirectoryPage() {
         <p className="text-sm font-medium text-navy-500" role="status" aria-live="polite">
           {isLoading
             ? 'Loading campus directory…'
-            : `${filtered.length} mapped locations and ${filteredEntries.length} directory listings`}
+            : `${filtered.length} mapped ${filtered.length === 1 ? 'location' : 'locations'} · ${filteredEntries.length} official ${filteredEntries.length === 1 ? 'listing' : 'listings'}`}
         </p>
         {!isLoading && entries.length > 0 && (
           <div className="mt-4 flex items-start gap-3 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-950">
             <MapPinOff size={18} className="mt-0.5 shrink-0" aria-hidden="true" />
             <p>
-              These official department and facility listings do not have verified building coordinates yet, so they are searchable here but are not shown as map pins or walking destinations.
+              Official departments, facilities and campus resources are searchable here even when they are not mapped yet. Map pins and walking directions will be added only after exact coordinates are verified.
             </p>
           </div>
         )}
@@ -167,34 +168,10 @@ export default function DirectoryPage() {
 
             {filteredEntries.length > 0 && (
               <section className="mt-10" aria-labelledby="directory-listings-heading">
-                <h2 id="directory-listings-heading" className="mb-4 text-lg font-bold text-navy-900">Departments and campus facilities</h2>
+                <h2 id="directory-listings-heading" className="mb-4 text-lg font-bold text-navy-900">Campus directory listings</h2>
                 <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                   {filteredEntries.map((entry) => (
-                    <article key={entry.id} className="flex flex-col rounded-2xl border border-navy-100 bg-white p-5 shadow-card">
-                      <div className="flex items-start justify-between gap-3">
-                        <div>
-                          <p className="text-xs font-semibold uppercase tracking-wide text-teal-700">{getCategoryName(entry.category, lang)}</p>
-                          <h3 className="mt-2 text-base font-bold text-navy-900">
-                            {(lang === 'kn' && entry.nameKn) || (lang === 'hi' && entry.nameHi) || entry.name}
-                          </h3>
-                        </div>
-                        <Building2 size={18} className="mt-1 shrink-0 text-navy-400" aria-hidden="true" />
-                      </div>
-                      <p className="mt-3 min-h-10 flex-1 text-sm leading-relaxed text-navy-600">
-                        {entry.description[lang] || entry.description.en || 'Listed by the official RNSIT website.'}
-                      </p>
-                      <p className="mt-4 inline-flex items-center gap-1.5 text-xs font-medium text-amber-800">
-                        <MapPinOff size={14} aria-hidden="true" /> Building location not verified
-                      </p>
-                      <a
-                        href={entry.sourceUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="mt-4 inline-flex items-center gap-1.5 border-t border-navy-100 pt-4 text-xs font-semibold text-teal-700 hover:text-teal-900"
-                      >
-                        Source: {entry.sourceName} <ExternalLink size={13} aria-hidden="true" />
-                      </a>
-                    </article>
+                    <DirectoryEntryCard key={entry.id} entry={entry} language={lang} />
                   ))}
                 </div>
               </section>

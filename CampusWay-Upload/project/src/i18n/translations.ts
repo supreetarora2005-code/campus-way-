@@ -49,13 +49,13 @@ const T: Dict = {
   'quick.departments': { en: 'Departments', kn: 'ಇಲಾಖೆಗಳು', hi: 'विभाग' },
 
   // Stats
-  'stats.locations': { en: 'Verified Locations', kn: 'ಪರಿಶೀಲಿಸಿದ ಸ್ಥಳಗಳು', hi: 'सत्यापित स्थान' },
+  'stats.listings': { en: 'Campus Listings', kn: 'ಕ್ಯಾಂಪಸ್ ಪಟ್ಟಿಗಳು', hi: 'कैंपस सूची' },
   'stats.categories': { en: 'Active Categories', kn: 'ಸಕ್ರಿಯ ವರ್ಗಗಳು', hi: 'सक्रिय श्रेणियां' },
   'stats.walkable': { en: 'Route-ready locations', kn: 'ದಾರಿಗೆ ಸಿದ್ಧ ಸ್ಥಳಗಳು', hi: 'मार्ग-तैयार स्थान' },
 
   // Sections
   'section.everything.title': { en: 'Everything at RNSIT, One Search Away', kn: 'ಆರ್‌ಎನ್‌ಎಸ್‌ಐಟಿ‌ನ ಎಲ್ಲವೂ, ಒಂದೇ ಹುಡುಕಾಟದಲ್ಲಿ', hi: 'आरएनएसआईटी का सब कुछ, एक खोज में' },
-  'section.everything.sub': { en: 'Browse locations by category or jump straight into the interactive campus map.', kn: 'ವರ್ಗದ ಮೂಲಕ ಸ್ಥಳಗಳನ್ನು ನೋಡಿ ಅಥವಾ ಸಂವಾದಾತ್ಮಕ ನಕ್ಷೆಯನ್ನು ತೆರೆಯಿರಿ.', hi: 'श्रेणी के अनुसार स्थान देखें या इंटरैक्टिव मैप खोलें।' },
+  'section.everything.sub': { en: 'Browse official campus records by category. Map locations will grow as precise campus data is added.', kn: 'ಅಧಿಕೃತ ಕ್ಯಾಂಪಸ್ ದಾಖಲೆಗಳನ್ನು ವರ್ಗದ ಮೂಲಕ ನೋಡಿ. ನಿಖರ ಕ್ಯಾಂಪಸ್ ಮಾಹಿತಿ ಸೇರಿಸಿದಂತೆ ನಕ್ಷೆಯ ಸ್ಥಳಗಳು ಹೆಚ್ಚಾಗುತ್ತವೆ.', hi: 'श्रेणी के अनुसार आधिकारिक कैंपस रिकॉर्ड देखें। सटीक कैंपस डेटा जुड़ने पर मैप स्थान बढ़ेंगे।' },
   'section.how.title': { en: 'How CampusWay Works', kn: 'ಕ್ಯಾಂಪಸ್‌ವೇ ಹೇಗೆ ಕಾರ್ಯನಿರ್ವಹಿಸುತ್ತದೆ', hi: 'कैंपसवे कैसे काम करता है' },
   'section.how.sub': { en: 'Three simple steps from "Where is it?" to "I\'m here."', kn: '"ಎಲ್ಲಿದೆ?" ದಿಂದ "ನಾನು ಬಂದಿದ್ದೇನೆ" ವರೆಗೆ ಮೂರು ಸರಳ ಹಂತಗಳು.', hi: '"यह कहां है?" से "मैं आ गया" तक तीन आसान कदम।' },
   'section.testimonial': {
@@ -65,7 +65,8 @@ const T: Dict = {
   },
   'section.testimonial.author': { en: 'CampusWay data standard', kn: 'ಕ್ಯಾಂಪಸ್‌ವೇ ಡೇಟಾ ಮಾನದಂಡ', hi: 'कैंपसवे डेटा मानक' },
   'section.cta': { en: 'Start Exploring', kn: 'ಅನ್ವೇಷಿಸಲು ಪ್ರಾರಂಭಿಸಿ', hi: 'एक्सप्लोर करना शुरू करें' },
-  'section.locations': { en: 'locations', kn: 'ಸ್ಥಳಗಳು', hi: 'स्थान' },
+  'section.record': { en: 'record', kn: 'ದಾಖಲೆ', hi: 'रिकॉर्ड' },
+  'section.records': { en: 'records', kn: 'ದಾಖಲೆಗಳು', hi: 'रिकॉर्ड' },
 
   // Steps
   'step1.title': { en: 'Search or Browse', kn: 'ಹುಡುಕಿ ಅಥವಾ ನೋಡಿ', hi: 'खोजें या ब्राउज़ करें' },

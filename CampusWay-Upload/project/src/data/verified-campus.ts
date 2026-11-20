@@ -42,6 +42,7 @@ export interface CampusDirectoryEntry {
   nameHi: string | null;
   category: CampusCategory;
   description: Record<string, string>;
+  imageUrl: string | null;
   sourceName: string;
   sourceUrl: string;
   verifiedAt: string;
@@ -92,6 +93,20 @@ interface CampusDirectory {
 }
 
 const DIRECTORY_KEY = 'campusway:verified-campus-directory';
+
+function getOfficialCampusImageUrl(value: unknown): string | null {
+  if (typeof value !== 'string') return null;
+
+  try {
+    const url = new URL(value);
+    if (url.protocol !== 'https:' || !['rnsit.ac.in', 'www.rnsit.ac.in'].includes(url.hostname)) {
+      return null;
+    }
+    return url.toString();
+  } catch {
+    return null;
+  }
+}
 
 async function fetchCampusDirectory(): Promise<CampusDirectory> {
   const [categoryResult, locationResult, entryResult] = await Promise.all([
@@ -191,6 +206,7 @@ async function fetchCampusDirectory(): Promise<CampusDirectory> {
       nameHi: row.name_hi,
       category,
       description,
+      imageUrl: getOfficialCampusImageUrl(description.image_url),
       sourceName: row.source_name,
       sourceUrl: row.source_url,
       verifiedAt: row.verified_at,

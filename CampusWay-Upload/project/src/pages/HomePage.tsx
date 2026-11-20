@@ -16,7 +16,7 @@ export default function HomePage() {
   const [query, setQuery] = useState('');
   const navigate = useNavigate();
   const { lang, t } = useLanguage();
-  const { categories, locations, isLoading, error } = useCampusDirectory();
+  const { categories, locations, entries, isLoading, error } = useCampusDirectory();
 
   const submitSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -26,8 +26,9 @@ export default function HomePage() {
   const goToExploreWith = (location: VerifiedCampusLocation) =>
     navigate(`/explore?destination=${encodeURIComponent(location.slug)}`);
   const routeableCount = locations.filter((location) => location.isRouteable).length;
+  const directoryRecordCount = new Set([...locations.map(({ slug }) => slug), ...entries.map(({ slug }) => slug)]).size;
   const stats = [
-    { value: isLoading ? '—' : String(locations.length), key: 'stats.locations' },
+    { value: isLoading ? '—' : String(directoryRecordCount), key: 'stats.listings' },
     { value: isLoading ? '—' : String(categories.length), key: 'stats.categories' },
     { value: isLoading ? '—' : String(routeableCount), key: 'stats.walkable' },
   ];
@@ -150,21 +151,28 @@ export default function HomePage() {
           </p>
         </div>
         <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
-          {categories.map((category) => (
-            <Link
-              key={category.slug}
-              to={`/directory?category=${encodeURIComponent(category.slug)}`}
-              className="group rounded-2xl border border-navy-100 bg-white p-6 text-center shadow-card transition hover:-translate-y-1 hover:border-teal-300 hover:shadow-card-hover"
-            >
-              <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-teal-50 text-teal-600 transition group-hover:bg-teal-500 group-hover:text-white">
-                <MapPin size={20} />
-              </span>
-              <p className="mt-4 text-sm font-semibold text-navy-900">{getCategoryName(category, lang)}</p>
-              <p className="mt-1 text-xs text-navy-500">
-                {locations.filter((location) => location.category.slug === category.slug).length} {t('section.locations')}
-              </p>
-            </Link>
-          ))}
+          {categories.map((category) => {
+            const recordCount = new Set([
+              ...locations.filter((location) => location.category.slug === category.slug).map(({ slug }) => slug),
+              ...entries.filter((entry) => entry.category.slug === category.slug).map(({ slug }) => slug),
+            ]).size;
+
+            return (
+              <Link
+                key={category.slug}
+                to={`/directory?category=${encodeURIComponent(category.slug)}`}
+                className="group rounded-2xl border border-navy-100 bg-white p-6 text-center shadow-card transition hover:-translate-y-1 hover:border-teal-300 hover:shadow-card-hover"
+              >
+                <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-teal-50 text-teal-600 transition group-hover:bg-teal-500 group-hover:text-white">
+                  <MapPin size={20} />
+                </span>
+                <p className="mt-4 text-sm font-semibold text-navy-900">{getCategoryName(category, lang)}</p>
+                <p className="mt-1 text-xs text-navy-500">
+                  {recordCount} {t(recordCount === 1 ? 'section.record' : 'section.records')}
+                </p>
+              </Link>
+            );
+          })}
         </div>
       </section>
 
