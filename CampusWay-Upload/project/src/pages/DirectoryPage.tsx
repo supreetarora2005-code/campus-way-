@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
+import { useLanguage } from '@/i18n/LanguageContext';
 import { Search, MapPin, Clock, ChevronRight, SearchX } from 'lucide-react';
 import {
   CAMPUS_LOCATIONS,
@@ -13,6 +14,8 @@ export default function DirectoryPage() {
   const urlCategory = searchParams.get('category') as Category | null;
   const [query, setQuery] = useState(urlQuery);
   const [category, setCategory] = useState<Category | 'All'>(urlCategory ?? 'All');
+  const { lang } = useLanguage();
+  const descriptionText = (l: (typeof CAMPUS_LOCATIONS)[number]) => l.description[lang] ?? l.description.en;
 
   const filtered = useMemo(() => {
     const q = (urlQuery || query).trim().toLowerCase();
@@ -21,7 +24,7 @@ export default function DirectoryPage() {
       const matchesQuery =
         !q ||
         l.name.toLowerCase().includes(q) ||
-        l.description.toLowerCase().includes(q) ||
+        descriptionText(l).toLowerCase().includes(q) ||
         l.category.toLowerCase().includes(q) ||
         l.departments.some((d) => d.toLowerCase().includes(q)) ||
         l.facilities.some((f) => f.toLowerCase().includes(q));
@@ -130,7 +133,7 @@ export default function DirectoryPage() {
                     {l.name}
                   </h2>
                   <p className="mt-2 flex-1 text-sm leading-relaxed text-navy-600">
-                    {l.description}
+                    {descriptionText(l)}
                   </p>
                   <div className="mt-4 flex items-center justify-between border-t border-navy-100 pt-3.5">
                     <span className="flex items-center gap-1.5 text-xs text-navy-500">

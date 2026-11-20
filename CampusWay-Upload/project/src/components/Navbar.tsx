@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
-import { Menu, X, MapPin, Globe } from 'lucide-react';
+import { Menu, X, MapPin, Globe, LogIn, UserPlus, UserRound, LogOut, ShieldCheck } from 'lucide-react';
 import { useLanguage } from '@/i18n/LanguageContext';
-import { LANGUAGES } from '@/i18n/translations';
-import { RNSIT } from '@/i18n/translations';
+import { LANGUAGES, RNSIT } from '@/i18n/translations';
+import { useAuth } from '@/auth/AuthContext';
 
 const NAV_ITEMS = [
   { to: '/', key: 'nav.home' },
@@ -14,8 +14,20 @@ const NAV_ITEMS = [
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
   const { lang, setLang, t } = useLanguage();
+  const { user, profile, isAdmin, signOut } = useAuth();
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onClick = (e: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(e.target as Node)) setMenuOpen(false);
+    };
+    document.addEventListener('mousedown', onClick);
+    return () => document.removeEventListener('mousedown', onClick);
+  }, [menuOpen]);
 
   const linkClass = ({ isActive }: { isActive: boolean }) =>
     `rounded-full px-4 py-2 text-sm font-medium transition-colors ${
@@ -50,15 +62,92 @@ export default function Navbar() {
     </div>
   );
 
+  const initials = (profile?.full_name?.trim()?.[0] ?? user?.email?.[0] ?? 'U').toUpperCase();
+
+  const accountMenu = (compact: boolean) => (
+    <div className={compact ? 'mt-3' : 'relative'} ref={compact ? undefined : menuRef}>
+      {compact ? (
+        <>
+          <p className="px-4 pt-2 text-xs font-semibold uppercase tracking-wide text-navy-400">Account</p>
+          <Link to="/profile" onClick={() => setOpen(false)} className="block rounded-lg px-4 py-3 text-sm font-medium text-navy-700 hover:bg-navy-50">
+            {profile?.full_name || 'Your profile'}
+          </Link>
+          {isAdmin && (
+            <Link to="/admin" onClick={() => setOpen(false)} className="block rounded-lg px-4 py-3 text-sm font-medium text-teal-700 hover:bg-teal-50">
+              Admin dashboard
+            </Link>
+          )}
+          <button
+            onClick={async () => {
+              setOpen(false);
+              await signOut();
+              navigate('/');
+            }}
+            className="flex w-full items-center gap-2 rounded-lg px-4 py-3 text-sm font-medium text-navy-700 hover:bg-navy-50"
+          >
+            <LogOut size={15} /> Sign out
+          </button>
+        </>
+      ) : (
+        <>
+          <button
+            onClick={() => setMenuOpen((v) => !v)}
+            className="flex h-10 w-10 items-center justify-center rounded-full bg-navy-900 text-sm font-bold text-teal-400 ring-2 ring-teal-500/40 transition hover:ring-teal-500"
+            aria-label="Account menu"
+            aria-expanded={menuOpen}
+          >
+            {initials}
+          </button>
+          {menuOpen && (
+            <div className="absolute right-0 top-12 z-50 w-56 overflow-hidden rounded-2xl border border-navy-100 bg-white shadow-xl">
+              <div className="border-b border-navy-100 px-4 py-3">
+                <p className="truncate text-sm font-bold text-navy-900">{profile?.full_name || 'CampusWay user'}</p>
+                <p className="truncate text-xs text-navy-500">{user?.email}</p>
+              </div>
+              <div className="p-1.5">
+                <Link
+                  to="/profile"
+                  onClick={() => setMenuOpen(false)}
+                  className="flex items-center gap-2.5 rounded-xl px-3 py-2.5 text-sm font-medium text-navy-700 transition hover:bg-navy-50"
+                >
+                  <UserRound size={15} /> Your profile
+                </Link>
+                {isAdmin && (
+                  <Link
+                    to="/admin"
+                    onClick={() => setMenuOpen(false)}
+                    className="flex items-center gap-2.5 rounded-xl px-3 py-2.5 text-sm font-medium text-teal-700 transition hover:bg-teal-50"
+                  >
+                    <ShieldCheck size={15} /> Admin dashboard
+                  </Link>
+                )}
+                <button
+                  onClick={async () => {
+                    setMenuOpen(false);
+                    await signOut();
+                    navigate('/');
+                  }}
+                  className="flex w-full items-center gap-2.5 rounded-xl px-3 py-2.5 text-sm font-medium text-navy-700 transition hover:bg-navy-50"
+                >
+                  <LogOut size={15} /> Sign out
+                </button>
+              </div>
+            </div>
+          )}
+        </>
+      )}
+    </div>
+  );
+
   return (
     <header className="sticky top-0 z-50 border-b border-navy-100 bg-white/90 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link to="/" className="flex items-center gap-2.5" onClick={() => setOpen(false)}>
           <img
-  src="/images/rnsit-logo.png"
-  alt="RNSIT Logo"
-  className="h-11 w-auto object-contain"
-/>
+            src="/images/rnsit-logo.png"
+            alt="RNSIT Logo"
+            className="h-11 w-auto object-contain"
+          />
           <span className="leading-tight">
             <span className="block text-lg font-bold tracking-tight text-navy-900">
               RNSIT <span className="text-teal-600">CampusWay</span>
@@ -79,9 +168,27 @@ export default function Navbar() {
 
         <div className="hidden items-center gap-3 md:flex">
           {langSwitcher(false)}
+          {user ? (
+            accountMenu(false)
+          ) : (
+            <>
+              <Link
+                to="/login"
+                className="inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-semibold text-navy-800 transition hover:bg-navy-50"
+              >
+                <LogIn size={15} /> Log In
+              </Link>
+              <Link
+                to="/signup"
+                className="inline-flex items-center gap-1.5 rounded-full bg-teal-500 px-5 py-2.5 text-sm font-semibold text-white shadow-sm shadow-teal-500/30 transition hover:bg-teal-600 hover:shadow-md"
+              >
+                <UserPlus size={15} /> Sign Up
+              </Link>
+            </>
+          )}
           <button
             onClick={() => navigate('/explore')}
-            className="rounded-full bg-teal-500 px-5 py-2.5 text-sm font-semibold text-white shadow-sm shadow-teal-500/30 transition hover:bg-teal-600 hover:shadow-md"
+            className="rounded-full bg-navy-900 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-navy-800"
           >
             {t('nav.find')}
           </button>
@@ -114,12 +221,34 @@ export default function Navbar() {
               {t(item.key)}
             </NavLink>
           ))}
+
+          {user ? (
+            accountMenu(true)
+          ) : (
+            <div className="mt-3 flex gap-2">
+              <Link
+                to="/login"
+                onClick={() => setOpen(false)}
+                className="flex flex-1 items-center justify-center gap-1.5 rounded-lg border border-navy-200 px-4 py-3 text-sm font-semibold text-navy-800"
+              >
+                <LogIn size={15} /> Log In
+              </Link>
+              <Link
+                to="/signup"
+                onClick={() => setOpen(false)}
+                className="flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-teal-500 px-4 py-3 text-sm font-semibold text-white"
+              >
+                <UserPlus size={15} /> Sign Up
+              </Link>
+            </div>
+          )}
+
           <button
             onClick={() => {
               setOpen(false);
               navigate('/explore');
             }}
-            className="mt-2 w-full rounded-lg bg-teal-500 px-4 py-3 text-sm font-semibold text-white"
+            className="mt-2 w-full rounded-lg bg-navy-900 px-4 py-3 text-sm font-semibold text-white"
           >
             {t('nav.find')}
           </button>

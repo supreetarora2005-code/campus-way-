@@ -317,7 +317,7 @@ export const CAMPUS_LOCATIONS: CampusLocation[] = [
 ];
 
 /** All known names/keywords for a location (used by search + AI assistant matching). */
-export function locationKeywords(loc: CampusLocation): string[] {
+export function locationKeywords(loc: CampusLocation): string {
   return [
     loc.name,
     loc.nameKn ?? '',
