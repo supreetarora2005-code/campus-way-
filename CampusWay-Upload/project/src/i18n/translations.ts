@@ -15,11 +15,6 @@ export const RNSIT = {
     hi: 'आरएनएसआईटी के लिए स्मार्ट कैंपस नेविगेशन',
   },
   established: 2001,
-  contact: {
-    email: 'principal@rnsit.ac.in',
-    phone: '+91 80 2861 1886',
-    address: 'RNSIT Campus, Dr. Vishnuvardhan Road, Channasandra, Bengaluru – 560098',
-  },
 };
 
 type Dict = Record<string, Record<Language, string>>;
@@ -145,21 +140,7 @@ const T: Dict = {
   },
   'about.includes': { en: 'What CampusWay Includes', kn: 'ಕ್ಯಾಂಪಸ್‌ವೇ‌ನಲ್ಲಿ ಏನಿದೆ', hi: 'कैंपसवे में क्या शामिल है' },
   'about.includesSub': { en: 'Everything works together as one complete navigation experience.', kn: 'ಎಲ್ಲವೂ ಒಟ್ಟಿಗೆ ಸಂಪೂರ್ಣ ನ್ಯಾವಿಗೇಶನ್ ಅನುಭವವನ್ನು ನೀಡುತ್ತದೆ.', hi: 'सब कुछ मिलकर एक संपूर्ण नेविगेशन अनुभव बनाता है।' },
-  'about.contact': { en: 'Contact & Feedback', kn: 'ಸಂಪರ್ಕ ಮತ್ತು ಪ್ರತಿಕ್ರಿಯೆ', hi: 'संपर्क और प्रतिक्रिया' },
-  'about.contactText': { en: 'Spotted a wrong room number, a missing facility, or have an idea to improve CampusWay? Send us a note — every suggestion helps make the map better.', kn: 'ತಪ್ಪು ಕೋಣೆ ಸಂಖ್ಯೆ ಅಥವಾ ಕಾಣೆಯಾದ ಸೌಲಭ್ಯ ಕಂಡಿರಾ? ನಮಗೆ ತಿಳಿಸಿ — ಪ್ರತಿಯೊಂದು ಸಲಹೆ ನಕ್ಷೆಯನ್ನು ಉತ್ತಮಗೊಳಿಸುತ್ತದೆ.', hi: 'गलत कमरा नंबर या कोई सुविधा गायब दिखी? हमें बताएं — हर सुझाव मैप को बेहतर बनाता है।' },
-  'about.name': { en: 'Name', kn: 'ಹೆಸರು', hi: 'नाम' },
-  'about.namePlaceholder': { en: 'Your name', kn: 'ನಿಮ್ಮ ಹೆಸರು', hi: 'आपका नाम' },
-  'about.email': { en: 'Email', kn: 'ಇಮೇಲ್', hi: 'ईमेल' },
-  'about.emailPlaceholder': { en: 'you@rnsit.ac.in', kn: 'ನಿಮ್ಮ ಇಮೇಲ್', hi: 'आपका ईमेल' },
-  'about.message': { en: 'Message', kn: 'ಸಂದೇಶ', hi: 'संदेश' },
-  'about.messagePlaceholder': { en: 'Share feedback, a correction, or an idea…', kn: 'ಪ್ರತಿಕ್ರಿಯೆ ಅಥವಾ ಸಲಹೆಯನ್ನು ಹಂಚಿಕೊಳ್ಳಿ…', hi: 'प्रतिक्रिया या सुझाव साझा करें…' },
-  'about.send': { en: 'Send Feedback', kn: 'ಪ್ರತಿಕ್ರಿಯೆ ಕಳುಹಿಸಿ', hi: 'प्रतिक्रिया भेजें' },
-  'about.thanks': { en: 'Thank you', kn: 'ಧನ್ಯವಾದಗಳು', hi: 'धन्यवाद' },
-  'about.thanksText': { en: 'Your feedback has been recorded. The CampusWay team reviews every message.', kn: 'ನಿಮ್ಮ ಪ್ರತಿಕ್ರಿಯೆಯನ್ನು ದಾಖಲಿಸಲಾಗಿದೆ. ಕ್ಯಾಂಪಸ್‌ವೇ ತಂಡ ಪ್ರತಿಯೊಂದು ಸಂದೇಶವನ್ನು ಪರಿಶೀಲಿಸುತ್ತದೆ.', hi: 'आपकी प्रतिक्रिया दर्ज कर ली गई है। कैंपसवे टीम हर संदेश की समीक्षा करती है।' },
-  'about.sendAnother': { en: 'Send another message', kn: 'ಇನ್ನೊಂದು ಸಂದೇಶ ಕಳುಹಿಸಿ', hi: 'दूसरा संदेश भेजें' },
-  'about.errFill': { en: 'Please fill in your name, email and message.', kn: 'ದಯವಿಟ್ಟು ಹೆಸರು, ಇಮೇಲ್ ಮತ್ತು ಸಂದೇಶ ಭರ್ತಿ ಮಾಡಿ.', hi: 'कृपया नाम, ईमेल और संदेश भरें।' },
-  'about.errEmail': { en: 'Please enter a valid email address.', kn: 'ದಯವಿಟ್ಟು ಸರಿಯಾದ ಇಮೇಲ್ ವಿಳಾಸ ನಮೂದಿಸಿ.', hi: 'कृपया मान्य ईमेल पता दर्ज करें।' },
-  'about.campus': { en: 'RNSIT Campus, Channasandra, Bengaluru', kn: 'ಆರ್‌ಎನ್‌ಎಸ್‌ಐಟಿ ಕ್ಯಾಂಪಸ್, ಚನ್ನಸಂದ್ರ, ಬೆಂಗಳೂರು', hi: 'आरएनएसआईटी कैंपस, चन्नासंद्र, बेंगलुरु' },
+
 
   // Benefits
   'benefit1.title': { en: 'Save Time Every Day', kn: 'ಪ್ರತಿದಿನ ಸಮಯ ಉಳಿಸಿ', hi: 'हर दिन समय बचाएं' },
@@ -194,8 +175,13 @@ const T: Dict = {
   // Footer
   'footer.tagline': { en: 'The smart way to find buildings, classrooms, labs and facilities across the RNSIT campus — built for students, faculty and visitors.', kn: 'ಆರ್‌ಎನ್‌ಎಸ್‌ಐಟಿ ಕ್ಯಾಂಪಸ್‌ನಲ್ಲಿ ಕಟ್ಟಡಗಳು, ತರಗತಿ ಕೋಣೆಗಳು ಮತ್ತು ಸೌಲಭ್ಯಗಳನ್ನು ಹುಡುಕುವ ಸ್ಮಾರ್ಟ್ ವಿಧಾನ.', hi: 'आरएनएसआईटी कैंपस में भवन, कक्षाएं, लैब और सुविधाएं खोजने का स्मार्ट तरीका।' },
   'footer.explore': { en: 'Explore', kn: 'ಅನ್ವೇಷಿಸಿ', hi: 'एक्सप्लोर' },
-  'footer.contact': { en: 'Contact', kn: 'ಸಂಪರ್ಕ', hi: 'संपर्क' },
-  'footer.note': { en: 'Campus locations are shown only when their coordinates and source have been verified.', kn: 'ನಿರ್ದೇಶಾಂಕಗಳು ಮತ್ತು ಮೂಲವನ್ನು ಪರಿಶೀಲಿಸಿದಾಗ ಮಾತ್ರ ಕ್ಯಾಂಪಸ್ ಸ್ಥಳಗಳನ್ನು ತೋರಿಸಲಾಗುತ್ತದೆ.', hi: 'कैंपस स्थान तभी दिखाए जाते हैं जब उनके निर्देशांक और स्रोत सत्यापित हों।' },
+  'footer.about': { en: 'About CampusWay', kn: 'ಕ್ಯಾಂಪಸ್‌ವೇ ಬಗ್ಗೆ', hi: 'कैंपसवे के बारे में' },
+  'footer.aboutText': {
+    en: 'CampusWay is a campus map and searchable directory built to help students, staff and visitors find their way with clear, source-backed location information.',
+    kn: 'ವಿದ್ಯಾರ್ಥಿಗಳು, ಸಿಬ್ಬಂದಿ ಮತ್ತು ಸಂದರ್ಶಕರು ಸ್ಪಷ್ಟ ಮೂಲಾಧಾರಿತ ಸ್ಥಳ ಮಾಹಿತಿಯೊಂದಿಗೆ ದಾರಿ ಕಂಡುಕೊಳ್ಳಲು ಕ್ಯಾಂಪಸ್‌ವೇ ನಕ್ಷೆ ಮತ್ತು ಹುಡುಕಬಹುದಾದ ಡೈರೆಕ್ಟರಿಯನ್ನು ಒದಗಿಸುತ್ತದೆ.',
+    hi: 'कैंपसवे छात्रों, कर्मचारियों और आगंतुकों को स्रोत-आधारित स्थान जानकारी के साथ रास्ता खोजने में मदद करने के लिए बनाया गया कैंपस मैप और खोज योग्य डायरेक्टरी है.',
+  },
+  'footer.note': { en: 'Map pins are shown only for locations with verified coordinates.', kn: 'ಪರಿಶೀಲಿಸಿದ ನಿರ್ದೇಶಾಂಕಗಳಿರುವ ಸ್ಥಳಗಳಿಗೆ ಮಾತ್ರ ನಕ್ಷೆಯ ಪಿನ್‌ಗಳನ್ನು ತೋರಿಸಲಾಗುತ್ತದೆ.', hi: 'मैप पिन केवल सत्यापित निर्देशांक वाले स्थानों के लिए दिखाए जाते हैं।' },
   'footer.rights': { en: 'Smart Campus Navigation Platform', kn: 'ಸ್ಮಾರ್ಟ್ ಕ್ಯಾಂಪಸ್ ನ್ಯಾವಿಗೇಶನ್ ಪ್ಲಾಟ್‌ಫಾರ್ಮ್', hi: 'स्मार्ट कैंपस नेविगेशन प्लेटफॉर्म' },
 
   // Categories

@@ -1,7 +1,5 @@
 import { Link } from 'react-router-dom';
-import { MapPin, Mail, Phone } from 'lucide-react';
 import { useLanguage } from '@/i18n/LanguageContext';
-import { RNSIT } from '@/i18n/translations';
 
 export default function Footer() {
   const { t } = useLanguage();
@@ -39,26 +37,15 @@ export default function Footer() {
 
         <div>
           <h3 className="text-sm font-semibold uppercase tracking-wider text-teal-400">
-            {t('footer.contact')}
+            {t('footer.about')}
           </h3>
-          <ul className="mt-4 space-y-2.5 text-sm">
-            <li className="flex items-center gap-2.5">
-              <Mail size={15} className="shrink-0 text-teal-400" /> {RNSIT.contact.email}
-            </li>
-            <li className="flex items-center gap-2.5">
-              <Phone size={15} className="shrink-0 text-teal-400" /> {RNSIT.contact.phone}
-            </li>
-            <li className="flex items-start gap-2.5">
-              <MapPin size={15} className="mt-0.5 shrink-0 text-teal-400" />
-              <span className="leading-relaxed">{RNSIT.contact.address}</span>
-            </li>
-          </ul>
-          <p className="mt-4 text-xs leading-relaxed text-navy-300">{t('footer.note')}</p>
+          <p className="mt-4 text-sm leading-relaxed text-navy-200">{t('footer.aboutText')}</p>
+          <p className="mt-3 text-xs leading-relaxed text-navy-300">{t('footer.note')}</p>
         </div>
       </div>
 
       <div className="border-t border-navy-800 py-5 text-center text-xs text-navy-300">
-        © {new Date().getFullYear()} RNSIT CampusWay · {RNSIT.fullName} · {t('footer.rights')}
+          © {new Date().getFullYear()} CampusWay · {t('footer.rights')}
       </div>
     </footer>
   );
